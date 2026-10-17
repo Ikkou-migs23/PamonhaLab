@@ -1,0 +1,85 @@
+:root{
+  --palha:#1d3b2a; --palha-2:#2f5a40; --milho:#f5c518; --milho-esc:#d9a900;
+  --papel:#f2f3ea; --tinta:#1c2620; --suave:#5b6a60; --linha:#d5d9c8; --erro:#a3281c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);
+  font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;line-height:1.55}
+a{color:var(--palha-2)}
+:focus-visible{outline:3px solid var(--milho-esc);outline-offset:2px}
+
+.topo{display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:.9rem clamp(1rem,4vw,3rem);background:var(--palha);flex-wrap:wrap}
+.marca{color:var(--milho);font-weight:800;font-size:1.25rem;text-decoration:none;letter-spacing:-.01em}
+.topo nav{display:flex;gap:1.4rem}
+.topo nav a{color:#e8ecdc;text-decoration:none}
+.topo nav a:hover{color:var(--milho)}
+
+.miolo{max-width:60rem;margin:0 auto;padding:3rem clamp(1rem,4vw,2rem)}
+.estreito{max-width:36rem}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.02em;font-weight:800;margin:0 0 1rem}
+h2{font-size:1.6rem;letter-spacing:-.01em;margin:0 0 1rem}
+h3{font-size:1.1rem;margin:0}
+.sub{color:var(--suave);margin-top:0}
+
+.hero{background:var(--palha);color:#f4f6e8;border-bottom:6px solid var(--milho)}
+.hero .miolo{padding-top:4.5rem;padding-bottom:4.5rem}
+.hero h1{max-width:16ch;font-size:clamp(2.4rem,7vw,4.6rem)}
+.hero p{max-width:42ch;font-size:1.15rem;color:#cdd8c4}
+.acoes{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+
+.botao{display:inline-block;background:var(--milho);color:var(--palha);font:inherit;font-weight:600;
+  padding:.8rem 1.4rem;border:2px solid var(--milho);border-radius:.4rem;text-decoration:none;cursor:pointer}
+.botao:hover{background:var(--milho-esc);border-color:var(--milho-esc)}
+.botao.sec{background:transparent;color:var(--palha);border-color:currentColor}
+.botao.sec:hover{background:rgba(127,140,120,.15)}
+.hero .botao.sec{color:#f4f6e8}
+.botao.peq{padding:.45rem 1rem;font-size:.95rem;white-space:nowrap}
+
+.catalogo ul{list-style:none;margin:0;padding:0;border-top:2px solid var(--palha)}
+.catalogo li{display:flex;align-items:center;gap:1.1rem;padding:1.1rem .2rem;border-bottom:1px solid var(--linha)}
+.catalogo .ico{font-size:1.8rem;width:2.4rem;text-align:center}
+.catalogo .txt{flex:1}
+.catalogo p{margin:.15rem 0 0;color:var(--suave);font-size:.97rem}
+.filosofia{border-top:1px solid var(--linha)}
+.filosofia p{max-width:55ch}
+
+.form{display:grid;gap:1.1rem;margin-top:1.5rem}
+.linha{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+label{display:grid;gap:.35rem;font-weight:600;font-size:.95rem}
+input[type=text],input[type=number],select,textarea,input[type=file]{
+  font:inherit;font-weight:400;padding:.65rem .75rem;border:1.5px solid var(--linha);
+  border-radius:.4rem;background:#fff;color:var(--tinta);width:100%}
+input[type=range]{width:100%;accent-color:var(--palha-2)}
+.check{display:flex;align-items:center;gap:.6rem;font-weight:400}
+.check input{width:1.1rem;height:1.1rem;accent-color:var(--palha-2)}
+.nota{color:var(--suave);margin-top:2rem;font-size:.95rem}
+
+.aviso{max-width:60rem;margin:1rem auto 0;padding:.8rem 1rem;border-radius:.4rem;
+  background:#fff;border:1.5px solid var(--linha);width:calc(100% - 2rem)}
+.aviso.erro{border-color:var(--erro);color:var(--erro)}
+
+.rolagem{overflow-x:auto}
+.tabela{width:100%;border-collapse:collapse;font-size:.92rem}
+.tabela th,.tabela td{text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--linha);vertical-align:top}
+.tabela th{border-bottom:2px solid var(--palha)}
+.tabela .desc{min-width:16rem;white-space:pre-wrap}
+.tabela select{padding:.3rem}
+
+.rodape{text-align:center;color:var(--suave);padding:2rem 1rem 3rem;font-size:.9rem;border-top:1px solid var(--linha)}
+.rodape p{margin:.2rem 0}
+
+@media (max-width:560px){
+  .linha{grid-template-columns:1fr}
+  .catalogo li{flex-wrap:wrap}
+  .catalogo .txt{flex-basis:calc(100% - 4rem)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.bloco{border-top:2px solid var(--palha);padding-top:1.4rem;margin-top:2.2rem}
+.bloco h2{font-size:1.3rem;margin-bottom:.3rem}
+progress{width:100%;height:1rem;accent-color:var(--palha-2)}
+.botao:disabled{opacity:.6;cursor:wait}
+@media (max-width:760px){.topo nav{gap:.9rem;font-size:.95rem;flex-wrap:wrap}}

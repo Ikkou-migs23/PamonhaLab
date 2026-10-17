@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block titulo %}Imagens · Pamonha Lab{% endblock %}
+{% block conteudo %}
+<main class="miolo estreito">
+  <h1>Tratamento de imagens</h1>
+  <p class="sub">Envie uma imagem, escolha o que fazer e baixe o resultado. Nada fica salvo no servidor.</p>
+
+  <form method="post" enctype="multipart/form-data" class="form">
+    <label>Imagem
+      <input type="file" name="imagem" accept="image/*" required>
+    </label>
+
+    <div class="linha">
+      <label>Formato de saída
+        <select name="formato">
+          <option value="png">PNG</option>
+          <option value="jpg">JPG</option>
+          <option value="webp">WEBP</option>
+        </select>
+      </label>
+      <label>Largura máxima (px)
+        <input type="number" name="largura" min="16" max="8000" placeholder="manter original">
+      </label>
+    </div>
+
+    <label>Qualidade (JPG e WEBP): <output id="q">85</output>
+      <input type="range" name="qualidade" min="10" max="100" value="85"
+             oninput="document.getElementById('q').value=this.value">
+    </label>
+
+    <label class="check"><input type="checkbox" name="pb"> Converter para preto e branco</label>
+
+    <button class="botao" type="submit">Processar e baixar</button>
+  </form>
+
+  <p class="nota">Precisa de vetorização, remoção de fundo ou algo mais elaborado? <a href="{{ url_for('pedido', servico='vetor') }}">Faça um pedido</a>.</p>
+</main>
+{% endblock %}

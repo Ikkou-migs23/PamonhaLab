@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}Pedidos · Pamonha Lab{% endblock %}
+{% block conteudo %}
+<main class="miolo">
+  <h1>Pedidos</h1>
+  {% if not pedidos %}
+    <p class="sub">Nenhum pedido ainda. Quando alguém enviar o formulário, ele aparece aqui.</p>
+  {% else %}
+  <div class="rolagem">
+  <table class="tabela">
+    <thead><tr><th>#</th><th>Quando</th><th>Cliente</th><th>Serviço</th><th>Descrição</th><th>Arquivo</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for p in pedidos %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.criado_em }}</td>
+        <td>{{ p.nome }}<br><small>{{ p.contato }}</small></td>
+        <td>{{ nomes.get(p.servico, p.servico) }}</td>
+        <td class="desc">{{ p.descricao }}</td>
+        <td>{% if p.arquivo %}<a href="{{ url_for('admin_arquivo', nome=p.arquivo) }}">baixar</a>{% else %}-{% endif %}</td>
+        <td>
+          <form method="post" action="{{ url_for('admin_status', pid=p.id) }}">
+            <select name="status" onchange="this.form.submit()">
+              {% for s in status_opcoes %}<option {{ 'selected' if s == p.status }}>{{ s }}</option>{% endfor %}
+            </select>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% endif %}
+</main>
+{% endblock %}

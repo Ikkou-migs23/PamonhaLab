@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block titulo %}Vetorização · Pamonha Lab{% endblock %}
+{% block conteudo %}
+<main class="miolo estreito">
+  <h1>Vetorização de imagens</h1>
+  <p class="sub">Transforma PNG, JPG ou WEBP em um SVG colorido em camadas. Mais cores deixam o resultado mais fiel e o arquivo maior. Imagens grandes são reduzidas para 1600 px.</p>
+
+  <form method="post" enctype="multipart/form-data" class="form" id="f-vetor">
+    <label>Imagem
+      <input type="file" name="imagem" accept="image/*" required>
+    </label>
+    <label>Quantidade de cores: <output id="c">24</output>
+      <input type="range" name="cores" min="4" max="40" value="24"
+             oninput="document.getElementById('c').value=this.value">
+    </label>
+    <label>Fundo para áreas transparentes
+      <select name="fundo">
+        <option value="branco">Branco</option>
+        <option value="preto">Preto</option>
+      </select>
+    </label>
+    <button class="botao" type="submit" data-espera="Vetorizando... isso pode levar alguns segundos">Vetorizar e baixar SVG</button>
+  </form>
+</main>
+<script>
+  document.getElementById('f-vetor').addEventListener('submit', function(e){
+    var b = e.target.querySelector('button'); b.textContent = b.dataset.espera; b.disabled = true;
+    setTimeout(function(){ b.disabled = false; b.textContent = 'Vetorizar e baixar SVG'; }, 60000);
+  });
+</script>
+{% endblock %}

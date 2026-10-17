@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<section class="hero">
+  <div class="miolo">
+    <h1>Você traz a demanda.<br>A gente transforma em resultado.</h1>
+    <p>Pequenas ferramentas e serviços digitais num lugar só: imagem, vídeo, design e automação, sem precisar montar o fluxo por conta própria.</p>
+    <div class="acoes">
+      <a class="botao" href="{{ url_for('ferramenta_imagem') }}">Usar a ferramenta de imagens</a>
+      <a class="botao sec" href="{{ url_for('pedido') }}">Pedir um serviço</a>
+    </div>
+  </div>
+</section>
+
+<section class="miolo catalogo">
+  <h2>O que dá pra fazer</h2>
+  <ul>
+    {% for s in servicos %}
+    <li>
+      <span class="ico" aria-hidden="true">{{ s.icone }}</span>
+      <div class="txt">
+        <h3>{{ s.nome }}</h3>
+        <p>{{ s.desc }}</p>
+      </div>
+      {% if s.ferramenta %}
+        <a class="botao peq" href="{{ url_for(s.ferramenta) }}">Usar agora</a>
+      {% else %}
+        <a class="botao peq sec" href="{{ url_for('pedido', servico=s.slug) }}">Pedir</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="miolo filosofia">
+  <h2>Por que pamonha?</h2>
+  <p>Porque pamonha é pegar algo simples, trabalhar bem e entregar pronto. O Pamonha Lab cresce do mesmo jeito: uma ferramenta pequena de cada vez, até virar um ecossistema.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block titulo %}Fazer um pedido · Pamonha Lab{% endblock %}
+{% block conteudo %}
+<main class="miolo estreito">
+  <h1>Fazer um pedido</h1>
+  <p class="sub">Conte o que você precisa. Respondemos pelo contato que você deixar.</p>
+
+  <form method="post" enctype="multipart/form-data" class="form">
+    <label>Seu nome
+      <input type="text" name="nome" value="{{ form.get('nome','') }}" required>
+    </label>
+    <label>WhatsApp ou e-mail
+      <input type="text" name="contato" value="{{ form.get('contato','') }}" required>
+    </label>
+    <label>Serviço
+      <select name="servico">
+        {% for s in servicos %}
+        <option value="{{ s.slug }}" {{ 'selected' if form.get('servico') == s.slug }}>{{ s.nome }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>O que você precisa?
+      <textarea name="descricao" rows="5" required>{{ form.get('descricao','') }}</textarea>
+    </label>
+    <label>Arquivo de referência (opcional, até 200 MB)
+      <input type="file" name="arquivo">
+    </label>
+    <button class="botao" type="submit">Enviar pedido</button>
+  </form>
+</main>
+{% endblock %}

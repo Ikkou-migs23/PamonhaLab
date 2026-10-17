@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block titulo %}Cortando vídeo · Pamonha Lab{% endblock %}
+{% block conteudo %}
+{% if job.status == "processando" %}<meta http-equiv="refresh" content="3">{% endif %}
+<main class="miolo estreito">
+  {% if job.status == "processando" %}
+    <h1>Cortando o vídeo</h1>
+    <p class="sub">
+      {% if job.total %}Cortes prontos: {{ job.feitos }} de {{ job.total }}.{% else %}Lendo o vídeo...{% endif %}
+      Esta página atualiza sozinha.
+    </p>
+    <progress max="{{ job.total or 1 }}" value="{{ job.feitos }}"></progress>
+  {% elif job.status == "pronto" %}
+    <h1>Cortes prontos</h1>
+    <p class="sub">{{ job.total }} arquivo(s) MP4 dentro do ZIP. O download fica disponível por 2 horas.</p>
+    <p><a class="botao" href="{{ url_for('video_baixar', jid=jid) }}">Baixar ZIP</a></p>
+  {% else %}
+    <h1>Não deu certo</h1>
+    <p class="sub">{{ job.erro }}</p>
+    <p><a class="botao sec" href="{{ url_for('ferramenta_video') }}">Tentar outro vídeo</a></p>
+  {% endif %}
+</main>
+{% endblock %}

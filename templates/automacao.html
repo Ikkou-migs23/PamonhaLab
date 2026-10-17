@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block titulo %}Automação · Pamonha Lab{% endblock %}
+{% block conteudo %}
+<main class="miolo estreito">
+  <h1>Automação de tarefas</h1>
+  <p class="sub">Tarefas repetitivas resolvidas em um clique. Escolha uma delas abaixo.</p>
+
+  <section class="bloco">
+    <h2>Dividir PDF por capítulos</h2>
+    <p class="sub">Detecta capítulos marcados com número romano (I, II, III...) em linha isolada e agrupa vários capítulos por arquivo. Você recebe um ZIP.</p>
+    <form method="post" enctype="multipart/form-data" class="form">
+      <input type="hidden" name="acao" value="capitulos">
+      <label>PDF <input type="file" name="pdf" accept="application/pdf" required></label>
+      <label>Capítulos por arquivo
+        <input type="number" name="por_arquivo" min="1" max="50" value="5" required>
+      </label>
+      <button class="botao" type="submit">Dividir e baixar</button>
+    </form>
+  </section>
+
+  <section class="bloco">
+    <h2>Extrair páginas de um PDF</h2>
+    <p class="sub">Gera um novo PDF só com o intervalo que você escolher.</p>
+    <form method="post" enctype="multipart/form-data" class="form">
+      <input type="hidden" name="acao" value="paginas">
+      <label>PDF <input type="file" name="pdf" accept="application/pdf" required></label>
+      <div class="linha">
+        <label>Da página <input type="number" name="inicio" min="1" value="1" required></label>
+        <label>Até a página <input type="number" name="fim" min="1" required></label>
+      </div>
+      <button class="botao" type="submit">Extrair e baixar</button>
+    </form>
+  </section>
+
+  <section class="bloco">
+    <h2>Criar várias pastas de uma vez</h2>
+    <p class="sub">Digite os nomes separados por vírgula. Você recebe um ZIP com as pastas vazias, é só extrair onde quiser.</p>
+    <form method="post" class="form">
+      <input type="hidden" name="acao" value="pastas">
+      <label>Nomes das pastas
+        <input type="text" name="nomes" placeholder="miguel, marcos, maria" required>
+      </label>
+      <button class="botao" type="submit">Criar e baixar</button>
+    </form>
+  </section>
+</main>
+{% endblock %}

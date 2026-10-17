@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Pamonha Lab{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌽</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="{{ url_for('index') }}">🌽 Pamonha Lab</a>
+    <nav>
+      <a href="{{ url_for('ferramenta_imagem') }}">Imagens</a>
+      <a href="{{ url_for('ferramenta_vetor') }}">Vetor</a>
+      <a href="{{ url_for('ferramenta_video') }}">Vídeo</a>
+      <a href="{{ url_for('ferramenta_automacao') }}">Automação</a>
+      <a href="{{ url_for('pedido') }}">Fazer um pedido</a>
+    </nav>
+  </header>
+
+  {% with msgs = get_flashed_messages(with_categories=true) %}
+    {% for cat, m in msgs %}<div class="aviso {{ cat }}" role="alert">{{ m }}</div>{% endfor %}
+  {% endwith %}
+
+  {% block conteudo %}{% endblock %}
+
+  <footer class="rodape">
+    <p>Feito com criatividade, código e um pouco de pamonha. 🌽</p>
+    <p>Goiás, Brasil · em desenvolvimento</p>
+  </footer>
+</body>
+</html>
